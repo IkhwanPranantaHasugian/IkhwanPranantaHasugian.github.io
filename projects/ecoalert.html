@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EcoAlert — Ikhwan Prananta Hasugian</title>
+  <meta name="description"
+    content="EcoAlert: An Android disaster reporting app built with Kotlin for fast community reporting and emergency response.">
+  <link rel="icon" type="image/png" href="../image/icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@400;500;600;700&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="../style.css">
+  <link rel="stylesheet" href="./project-detail.css">
+</head>
+
+<body>
+
+  <div class="page-transition" id="pageTransition"></div>
+  <div class="cursor-dot" id="cursorDot"></div>
+  <div class="cursor-ring" id="cursorRing"></div>
+
+  <nav class="nav" id="nav">
+    <div class="container nav-inner">
+      <a href="../index.html" class="nav-name page-link">Ikhwan Prananta Hasugian</a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="../index.html#about" class="page-link">About</a></li>
+        <li><a href="../index.html#projects" class="page-link">Projects</a></li>
+        <li><a href="../index.html#contact" class="nav-cta page-link">Get in Touch</a></li>
+      </ul>
+      <div style="display:flex;align-items:center;gap:0.8rem;">
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+          <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+          </svg>
+          <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="5" />
+            <line x1="12" y1="1" x2="12" y2="3" />
+            <line x1="12" y1="21" x2="12" y2="23" />
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
+            <line x1="1" y1="12" x2="3" y2="12" />
+            <line x1="21" y1="12" x2="23" y2="12" />
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
+          </svg>
+        </button>
+        <button class="hamburger" id="hamburger"
+          aria-label="Toggle menu"><span></span><span></span><span></span></button>
+      </div>
+    </div>
+  </nav>
+  <div class="nav-overlay" id="navOverlay"></div>
+
+  <header class="detail-hero">
+    <div class="detail-hero-inner">
+      <a href="../index.html#projects" class="detail-breadcrumb page-link">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+          stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="15 18 9 12 15 6" />
+        </svg>
+        Back to Projects
+      </a>
+      <h1 class="detail-title reveal">EcoAlert</h1>
+      <p class="detail-tagline reveal">EcoAlert is a native Android application that allows users to report disasters
+        and public emergencies. Users can submit incident reports with photos and location information to help
+        authorities respond more efficiently.</p>
+      <div class="detail-meta reveal">
+        <span class="detail-tech-tag">Android</span>
+        <span class="detail-tech-tag">Kotlin</span>
+        <span class="detail-tech-tag">Social</span>
+        <div class="detail-links">
+          <a href="https://github.com/IkhwanPranantaHasugian/EcoAlert" target="_blank" rel="noopener"
+            class="detail-link-btn primary">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+              <path
+                d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z" />
+            </svg>
+            View on GitHub
+          </a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <section class="detail-gallery">
+    <div class="container">
+      <div class="gallery-grid reveal">
+        <div class="gallery-main">
+          <img src="../image/projects/ecoalert/preview.png" alt="EcoAlert Android App preview">
+        </div>
+        <div class="gallery-thumbs">
+          <div class="gallery-thumb active" data-type="image" data-src="../image/projects/ecoalert/preview.png">
+            <img src="../image/projects/ecoalert/preview.png" alt="EcoAlert preview 1">
+          </div>
+          <div class="gallery-thumb video-thumb" data-type="video"
+            data-src="../image/projects/ecoalert/VideoPreviewEcoAlert.mp4">
+            <img src="../image/projects/ecoalert/preview.png" alt="Play Video Preview">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="detail-content">
+    <div class="container">
+      <div class="detail-content-grid">
+        <div>
+          <div class="detail-section reveal">
+            <h2 class="detail-section-title">Overview</h2>
+            <p>EcoAlert is an Android application developed to make it easier for users to report disasters and public
+              safety incidents. The application allows users to submit reports such as fires, floods, fallen trees, and
+              infrastructure damage, along with photos and GPS location data.</p>
+            <p>The application also displays reported incidents on a map, making it easier to view nearby reports and
+              monitor ongoing situations.</p>
+          </div>
+
+          <div class="detail-section reveal">
+            <h2 class="detail-section-title">Key Features</h2>
+            <ul class="feature-list">
+              <li>Incident reporting with GPS location</li>
+              <li>Photo attachment for reports</li>
+              <li>Interactive map with report markers</li>
+              <li>Status tracking for submitted reports</li>
+            </ul>
+          </div>
+
+          <div class="detail-section reveal">
+            <h2 class="detail-section-title">Challenges & Learnings</h2>
+            <p>One of the main challenges in this project was handling location services and runtime permissions while
+              providing a smooth user experience. I also worked on integrating maps and organizing the application using
+              the MVVM architecture to keep the code easier to maintain.</p>
+            <p>This project helped me improve my Android development skills using Kotlin. I gained experience working
+              with GPS, maps, application architecture, and building mobile applications that handle user-generated
+              data.</p>
+          </div>
+        </div>
+
+        <aside class="detail-sidebar">
+          <div class="detail-info-card reveal">
+            <div class="detail-info-item">
+              <h4>Role</h4>
+              <p>Solo Developer</p>
+            </div>
+            <div class="detail-info-item">
+              <h4>Year</h4>
+              <p>2024</p>
+            </div>
+            <div class="detail-info-item">
+              <h4>Platform</h4>
+              <p>Android</p>
+            </div>
+            <div class="detail-info-item">
+              <h4>Tech Stack</h4>
+              <div class="tech-list">
+                <span>Android Studio</span>
+                <span>Kotlin</span>
+                <span>Google Maps API</span>
+              </div>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <section class="detail-project-nav">
+    <div class="container">
+      <div class="project-nav-grid">
+        <a href="./chemlab.html" class="project-nav-item prev page-link">
+          <span class="project-nav-label">← Previous</span>
+          <span class="project-nav-name">ChemLab</span>
+        </a>
+        <a href="./garagesim.html" class="project-nav-item next page-link">
+          <span class="project-nav-label">Next →</span>
+          <span class="project-nav-name">GarageSim</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <p class="footer-text">&copy; <span id="footerYear">2026</span> Ikhwan Prananta Hasugian</p>
+      <div class="footer-socials">
+        <a href="https://github.com/IkhwanPranantaHasugian" target="_blank" rel="noopener" aria-label="GitHub"><svg
+            xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+            <path
+              d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z" />
+          </svg></a>
+        <a href="https://www.linkedin.com/in/ikhwanprananta" target="_blank" rel="noopener" aria-label="LinkedIn"><svg
+            xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+            <path
+              d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+          </svg></a>
+      </div>
+    </div>
+  </footer>
+
+  <button class="back-to-top" id="backToTop" aria-label="Back to top"><svg xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+      stroke-linejoin="round">
+      <polyline points="17 11 12 6 7 11" />
+      <line x1="12" y1="6" x2="12" y2="18" />
+    </svg></button>
+
+  <script src="./project-detail.js"></script>
+</body>
+
+</html>
