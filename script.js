@@ -188,7 +188,23 @@ if (statsGrid) {
       if (entry.isIntersecting) {
         const counters = entry.target.querySelectorAll('.stat-number');
         counters.forEach(counter => {
-          const target = parseInt(counter.getAttribute('data-target'));
+          const statType = counter.getAttribute('data-stat');
+          let target = 0;
+
+          if (statType === 'projects') {
+            // Dynamically count total project cards present in DOM
+            const projectCards = document.querySelectorAll('.project-card');
+            target = projectCards.length;
+          } else if (statType === 'experience') {
+            // Dynamically calculate years of experience from start year (default: last year)
+            const currentYear = new Date().getFullYear();
+            const startYearAttr = counter.getAttribute('data-start-year');
+            const startYear = startYearAttr ? parseInt(startYearAttr, 10) : (currentYear - 1);
+            target = Math.max(1, currentYear - startYear);
+          } else {
+            target = parseInt(counter.getAttribute('data-target') || '0', 10);
+          }
+
           const suffix = counter.getAttribute('data-suffix') || '';
           const duration = 1500;
           const start = performance.now();
