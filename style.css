@@ -408,6 +408,74 @@ a:hover {
   margin-bottom: 1rem;
 }
 
+.hero-status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.4rem 0.9rem;
+  background: var(--accent-soft);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  font-size: 0.78rem;
+  font-weight: 500;
+  color: var(--text);
+  margin-bottom: 1.2rem;
+  backdrop-filter: blur(8px);
+}
+
+.status-dot {
+  width: 8px;
+  height: 8px;
+  background: #2e7d32;
+  border-radius: 50%;
+  box-shadow: 0 0 0 0 rgba(46, 125, 50, 0.7);
+  animation: pulse-green 2s infinite;
+}
+
+@keyframes pulse-green {
+  0% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(46, 125, 50, 0.7);
+  }
+  70% {
+    transform: scale(1);
+    box-shadow: 0 0 0 6px rgba(46, 125, 50, 0);
+  }
+  100% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(46, 125, 50, 0);
+  }
+}
+
+.toast-notification {
+  position: fixed;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%) translateY(100px);
+  background: var(--bg-card);
+  border: 1px solid var(--card-border);
+  color: var(--text);
+  padding: 0.75rem 1.4rem;
+  border-radius: 30px;
+  font-size: 0.88rem;
+  font-weight: 500;
+  box-shadow: var(--shadow-lg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  opacity: 0;
+  transition: transform 0.4s var(--ease-out), opacity 0.4s ease;
+  pointer-events: none;
+}
+
+.toast-notification.show {
+  transform: translateX(-50%) translateY(0);
+  opacity: 1;
+}
+
 .hero-title {
   font-family: var(--font-display);
   font-size: clamp(2.8rem, 5.5vw, 4.2rem);
@@ -1408,5 +1476,135 @@ section {
   .stats-grid {
     flex-direction: column;
     max-width: 260px;
+  }
+}
+
+/* ══════════════════════════════════════
+   FILTER COUNT & CV MODAL
+══════════════════════════════════════ */
+.filter-count {
+  font-size: 0.78rem;
+  opacity: 0.8;
+  font-weight: 500;
+  margin-left: 2px;
+}
+
+.cv-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.35s ease;
+}
+
+.cv-modal.active {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.cv-modal-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.75);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.cv-modal-container {
+  position: relative;
+  width: min(900px, 95vw);
+  height: min(85vh, 800px);
+  background: var(--bg-card);
+  border: 1px solid var(--card-border);
+  border-radius: 16px;
+  box-shadow: var(--shadow-lg);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  z-index: 1;
+  transform: scale(0.95);
+  transition: transform 0.35s var(--ease-out);
+}
+
+.cv-modal.active .cv-modal-container {
+  transform: scale(1);
+}
+
+.cv-modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.2rem 1.6rem;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg-alt);
+}
+
+.cv-modal-header h3 {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  font-weight: 400;
+  color: var(--text);
+  margin: 0;
+}
+
+.cv-modal-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.btn-sm {
+  padding: 0.5rem 1rem !important;
+  font-size: 0.82rem !important;
+}
+
+.cv-modal-close {
+  background: transparent;
+  border: 1.5px solid var(--border);
+  color: var(--text);
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+.cv-modal-close:hover {
+  background: var(--accent);
+  color: #fff;
+  border-color: var(--accent);
+  transform: rotate(90deg);
+}
+
+.cv-modal-body {
+  flex: 1;
+  width: 100%;
+  height: 100%;
+  background: #525659;
+}
+
+.cv-modal-body iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+@media (max-width: 640px) {
+  .cv-modal {
+    padding: 0.75rem;
+  }
+  .cv-modal-header {
+    padding: 1rem;
+  }
+  .cv-modal-header h3 {
+    font-size: 0.95rem;
   }
 }

@@ -500,7 +500,26 @@ if (projectTrack) {
   }
 
   if (filterBtns.length) {
+    // Dynamic Filter Category Count Badges
+    const allCards = Array.from(projectTrack.querySelectorAll('.project-card'));
+    const counts = {
+      all: allCards.length,
+      vr: allCards.filter(c => c.getAttribute('data-category') === 'vr').length,
+      ar: allCards.filter(c => c.getAttribute('data-category') === 'ar').length,
+      mobile: allCards.filter(c => c.getAttribute('data-category') === 'mobile').length
+    };
+
     filterBtns.forEach(btn => {
+      const filter = btn.getAttribute('data-filter');
+      const count = counts[filter] !== undefined ? counts[filter] : 0;
+      let badge = btn.querySelector('.filter-count');
+      if (!badge) {
+        badge = document.createElement('span');
+        badge.className = 'filter-count';
+        btn.appendChild(badge);
+      }
+      badge.textContent = ` (${count})`;
+
       btn.addEventListener('click', () => {
         filterBtns.forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
@@ -516,6 +535,27 @@ if (projectTrack) {
 }
 
 
+// ── Toast Notification Helper ──
+function showToast(message) {
+  let toast = document.querySelector('.toast-notification');
+  if (!toast) {
+    toast = document.createElement('div');
+    toast.className = 'toast-notification';
+    document.body.appendChild(toast);
+  }
+  toast.innerHTML = `
+    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2e7d32" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+      <polyline points="22 4 12 14.01 9 11.01"/>
+    </svg>
+    <span>${message}</span>
+  `;
+  toast.classList.add('show');
+  setTimeout(() => {
+    toast.classList.remove('show');
+  }, 3000);
+}
+
 // ── Copy Email ──
 const copyEmailBtn = document.getElementById('copyEmailBtn');
 if (copyEmailBtn) {
@@ -529,6 +569,7 @@ if (copyEmailBtn) {
         </svg>
       `;
       copyEmailBtn.style.borderColor = '#2e7d32';
+      showToast('Email address copied to clipboard!');
       setTimeout(() => {
         copyEmailBtn.innerHTML = originalHTML;
         copyEmailBtn.style.borderColor = '';
@@ -536,3 +577,53 @@ if (copyEmailBtn) {
     });
   });
 }
+
+// ── CV Preview Modal Controller ──
+const previewCvBtn = document.getElementById('previewCvBtn');
+const cvModal = document.getElementById('cvModal');
+const closeCvModal = document.getElementById('closeCvModal');
+const cvModalBackdrop = document.getElementById('cvModalBackdrop');
+const cvIframe = document.getElementById('cvIframe');
+
+function openCvModal() {
+  if (cvModal && cvIframe) {
+    const pdfSrc = cvIframe.getAttribute('data-src');
+    if (pdfSrc && !cvIframe.src) {
+      cvIframe.src = pdfSrc;
+    }
+    cvModal.classList.add('active');
+    cvModal.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+  }
+}
+
+function closeCvModalHandler() {
+  if (cvModal) {
+    cvModal.classList.remove('active');
+    cvModal.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+  }
+}
+
+if (previewCvBtn) previewCvBtn.addEventListener('click', openCvModal);
+if (closeCvModal) closeCvModal.addEventListener('click', closeCvModalHandler);
+if (cvModalBackdrop) cvModalBackdrop.addEventListener('click', closeCvModalHandler);
+
+// ── Keyboard Navigation ──
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') {
+    if (cvModal && cvModal.classList.contains('active')) {
+      closeCvModalHandler();
+    } else if (navLinks && navLinks.classList.contains('open')) {
+      toggleMenu();
+    }
+  } else if (e.key === 'ArrowRight') {
+    if (carouselNext && !carouselNext.disabled) {
+      carouselNext.click();
+    }
+  } else if (e.key === 'ArrowLeft') {
+    if (carouselPrev && !carouselPrev.disabled) {
+      carouselPrev.click();
+    }
+  }
+});
