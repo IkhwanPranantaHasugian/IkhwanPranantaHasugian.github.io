@@ -1341,7 +1341,7 @@ section {
 
 /* Formspree status messages */
 .form-success-msg {
-  display: none;
+  display: none !important;
   align-items: center;
   gap: 0.8rem;
   padding: 1rem 1.4rem;
@@ -1351,28 +1351,28 @@ section {
   color: #2e7d32;
   font-weight: 500;
   font-size: 0.95rem;
-  animation: slide-up-fade 0.5s var(--ease-out) both;
   margin-bottom: 1rem;
 }
 
 .form-success-msg.show {
   display: flex !important;
+  animation: slide-up-fade 0.5s var(--ease-out) both;
 }
 
 .form-error-msg {
-  display: none;
+  display: none !important;
   padding: 0.9rem 1.2rem;
   background: rgba(196,93,62,0.08);
   border: 1.5px solid var(--accent-glow);
   border-radius: 8px;
   color: var(--accent);
   font-size: 0.88rem;
-  animation: slide-up-fade 0.4s var(--ease-out) both;
   margin-bottom: 1rem;
 }
 
 .form-error-msg.show {
   display: flex !important;
+  animation: slide-up-fade 0.4s var(--ease-out) both;
 }
 
 .form-field-error {

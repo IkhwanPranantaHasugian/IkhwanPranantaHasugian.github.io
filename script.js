@@ -408,13 +408,9 @@ if (contactForm) {
     const errorMsg = document.querySelector('[data-fs-error]') || document.querySelector('.form-error-msg');
 
     // Reset previous messages
-    if (successMsg) {
-      successMsg.classList.remove('show');
-      successMsg.style.display = 'none';
-    }
+    if (successMsg) successMsg.classList.remove('show');
     if (errorMsg) {
       errorMsg.classList.remove('show');
-      errorMsg.style.display = 'none';
       errorMsg.textContent = '';
     }
 
@@ -443,10 +439,7 @@ if (contactForm) {
 
       if (response.ok) {
         this.reset();
-        if (successMsg) {
-          successMsg.style.display = 'flex';
-          successMsg.classList.add('show');
-        }
+        if (successMsg) successMsg.classList.add('show');
         if (submitBtn) {
           submitBtn.innerHTML = `
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -471,7 +464,6 @@ if (contactForm) {
 
         if (errorMsg) {
           errorMsg.textContent = errorText;
-          errorMsg.style.display = 'flex';
           errorMsg.classList.add('show');
         }
         if (submitBtn) {
@@ -482,7 +474,6 @@ if (contactForm) {
     } catch (err) {
       if (errorMsg) {
         errorMsg.textContent = 'Network error. Please check your internet connection or email me directly at ikhwanprananta01@email.com.';
-        errorMsg.style.display = 'flex';
         errorMsg.classList.add('show');
       }
       if (submitBtn) {
