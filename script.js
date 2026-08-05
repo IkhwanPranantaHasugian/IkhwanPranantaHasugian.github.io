@@ -11,13 +11,41 @@ const observer = new IntersectionObserver((entries) => {
     }
   });
 }, {
-  threshold: 0.1,
+  threshold: 0.12,
   rootMargin: '0px 0px -40px 0px'
 });
 
-document.querySelectorAll('.reveal, .reveal-stagger').forEach(el => {
+document.querySelectorAll('.reveal, .reveal-stagger, .reveal-left, .reveal-right, .reveal-bounce').forEach(el => {
   observer.observe(el);
 });
+
+// ── Section Dividers draw-in ──
+const dividerObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible-divider');
+      dividerObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.5 });
+
+document.querySelectorAll('.section-divider').forEach(el => {
+  dividerObserver.observe(el);
+});
+
+// ── Timeline line grow ──
+const timelineEl = document.querySelector('.timeline');
+if (timelineEl) {
+  const tlObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        timelineEl.classList.add('animated');
+        tlObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15 });
+  tlObserver.observe(timelineEl);
+}
 
 // ── Dark Mode Toggle ──
 const themeToggle = document.getElementById('themeToggle');
@@ -369,50 +397,43 @@ if (footerYear) {
   footerYear.textContent = new Date().getFullYear();
 }
 
-// ── Contact Form Handling ──
+// ── Contact Form Handling (Formspree AJAX) ──
+// The form is handled by @formspree/ajax CDN library via data-* attributes.
+// We only add a submit visual feedback layer here.
 const contactForm = document.querySelector('.contact-form');
 if (contactForm) {
-  contactForm.addEventListener('submit', function (e) {
-    const action = this.getAttribute('action');
-
-    if (action && action.includes('your-form-id')) {
-      e.preventDefault();
-
-      const submitBtn = this.querySelector('.form-submit');
-      if (submitBtn) {
-        const originalText = submitBtn.innerHTML;
-
-        submitBtn.disabled = true;
-        submitBtn.innerHTML = `
-          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <polyline points="20 6 9 17 4 12"/>
-          </svg>
-          Message Sent!
-        `;
-        submitBtn.style.background = '#2e7d32';
-        submitBtn.style.borderColor = '#2e7d32';
-
-        this.reset();
-
-        setTimeout(() => {
-          submitBtn.disabled = false;
-          submitBtn.innerHTML = originalText;
-          submitBtn.style.background = '';
-          submitBtn.style.borderColor = '';
-        }, 4000);
-      }
+  contactForm.addEventListener('submit', function () {
+    const submitBtn = this.querySelector('.form-submit');
+    if (submitBtn) {
+      submitBtn.innerHTML = `
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="animation:spin 1s linear infinite">
+          <path d="M21 12a9 9 0 1 1-6.219-8.56"/>
+        </svg>
+        Sending…
+      `;
     }
   });
 }
 
 // ── Project Carousel & Filter Controller ──
-const projectTrack = document.getElementById('projectTrack');
-const carouselPrev = document.getElementById('carouselPrev');
-const carouselNext = document.getElementById('carouselNext');
-const carouselDots = document.getElementById('carouselDots');
-const filterBtns = document.querySelectorAll('.filter-btn');
+// Carousel vars declared here so keyboard nav (below) can reference them.
+let carouselPrev = document.getElementById('carouselPrev');
+let carouselNext = document.getElementById('carouselNext');
 
-if (projectTrack) {
+/**
+ * Initializes the project carousel, filter buttons, 3D tilt, and
+ * custom cursor hover bindings on dynamically rendered project cards.
+ * Called once the 'projectsReady' event fires from js/projects.js.
+ */
+function initProjectsSection() {
+  const projectTrack = document.getElementById('projectTrack');
+  carouselPrev = document.getElementById('carouselPrev');
+  carouselNext = document.getElementById('carouselNext');
+  const carouselDots = document.getElementById('carouselDots');
+  const filterBtns = document.querySelectorAll('.filter-btn');
+
+  if (!projectTrack) return;
+
   let currentIndex = 0;
   let activeFilter = 'all';
 
@@ -532,7 +553,22 @@ if (projectTrack) {
 
   window.addEventListener('resize', updateCarousel);
   setTimeout(updateCarousel, 100);
+
+  // 3D Tilt on newly rendered cards
+  applyCardTilt();
+
+  // Re-wire custom cursor hover on new cards
+  const cursorRing = document.getElementById('cursorRing');
+  if (cursorRing) {
+    projectTrack.querySelectorAll('.project-card').forEach(el => {
+      el.addEventListener('mouseenter', () => cursorRing.classList.add('hover'));
+      el.addEventListener('mouseleave', () => cursorRing.classList.remove('hover'));
+    });
+  }
 }
+
+// Listen for the signal from js/projects.js that cards are in the DOM
+document.addEventListener('projectsReady', initProjectsSection);
 
 
 // ── Toast Notification Helper ──
@@ -627,3 +663,46 @@ document.addEventListener('keydown', (e) => {
     }
   }
 });
+
+// ── 3D Tilt on Project Cards ──
+function applyCardTilt() {
+  const cards = document.querySelectorAll('.project-card');
+  cards.forEach(card => {
+    card.addEventListener('mousemove', (e) => {
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      const cx = rect.width / 2;
+      const cy = rect.height / 2;
+      const rotateX = ((y - cy) / cy) * -6;
+      const rotateY = ((x - cx) / cx) * 6;
+      card.style.transform = `perspective(800px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-6px)`;
+      card.style.boxShadow = `${-rotateY * 1.5}px ${rotateX * 1.5}px 30px rgba(0,0,0,0.12)`;
+    });
+    card.addEventListener('mouseleave', () => {
+      card.style.transform = '';
+      card.style.boxShadow = '';
+    });
+  });
+}
+// applyCardTilt() is now called from initProjectsSection() after projectsReady fires.
+
+// ── Hero Parallax on Scroll ──
+const heroSection = document.querySelector('.hero');
+const heroText = document.querySelector('.hero-text');
+if (heroSection && heroText) {
+  window.addEventListener('scroll', () => {
+    const scrolled = window.pageYOffset;
+    const heroH = heroSection.offsetHeight;
+    if (scrolled < heroH) {
+      const progress = scrolled / heroH;
+      heroText.style.transform = `translateY(${scrolled * 0.18}px)`;
+      heroText.style.opacity = 1 - progress * 1.4;
+    }
+  }, { passive: true });
+}
+
+// ── Inject spin keyframe for loading spinner ──
+const spinStyle = document.createElement('style');
+spinStyle.textContent = '@keyframes spin { to { transform: rotate(360deg); } }';
+document.head.appendChild(spinStyle);

@@ -113,9 +113,9 @@
   <section id="about">
     <div class="container">
       <h2 class="section-title reveal">A Little About Me</h2>
-      <hr class="section-divider reveal">
+      <hr class="section-divider">
       <div class="about-grid">
-        <div class="about-text reveal">
+        <div class="about-text reveal-left">
           <p>Hi, I'm a Junior Unity Developer who enjoys building interactive applications and games.</p>
           <p>I didn't start learning Unity until I was working on my final-year project, where I built a VR application
             from scratch.
@@ -126,7 +126,7 @@
             Right now, I'm looking for an opportunity to grow as a developer, work with experienced teams, and keep
             improving with every project.</p>
         </div>
-        <div class="skill-list reveal-stagger">
+        <div class="skill-list reveal-stagger reveal-right">
           <div class="skill-category">
             <h4>Engines &amp; Platforms</h4>
             <div class="skill-items">
@@ -165,11 +165,11 @@
   <section class="stats-section" id="stats">
     <div class="container">
       <div class="stats-grid reveal-stagger">
-        <div class="stat-card">
+        <div class="stat-card reveal-bounce">
           <div class="stat-number" data-stat="projects">0</div>
           <div class="stat-label">Projects Built</div>
         </div>
-        <div class="stat-card">
+        <div class="stat-card reveal-bounce">
           <div class="stat-number" data-stat="experience" data-start-year="2025" data-suffix="+">0</div>
           <div class="stat-label">Years of Experience</div>
         </div>
@@ -201,92 +201,8 @@
         </button>
 
         <div class="project-carousel-track-container" id="carouselTrackContainer">
-          <div class="project-carousel-track" id="projectTrack">
-
-            <a href="./projects/garagesim.html" class="project-card page-link" data-category="vr">
-              <div class="project-card-image">
-                <img src="./image/projects/garagesim/GarageSimThumbnail.png" alt="GarageSim VR Preview" loading="lazy">
-                <div class="project-card-overlay">
-                  <span>View Project →</span>
-                </div>
-              </div>
-              <div class="project-card-body">
-                <h3>GarageSim</h3>
-                <p>A VR training application built with Unity to help automotive vocational students practice basic
-                  vehicle
-                  maintenance in a virtual environment.</p>
-                <div class="project-card-tech">
-                  <span>Unity</span>
-                  <span>VR</span>
-                  <span>Education</span>
-                </div>
-              </div>
-            </a>
-
-            <a href="./projects/completefeedar.html" class="project-card page-link" data-category="ar">
-              <div class="project-card-image">
-                <img src="./image/projects/completefeedar/CompleteFeedARThumbnail.png" alt="CompleteFeedAR Preview"
-                  loading="lazy">
-                <div class="project-card-overlay">
-                  <span>View Project →</span>
-                </div>
-              </div>
-              <div class="project-card-body">
-                <h3>CompleteFeedAR</h3>
-                <p>CompleteFeedAR is an Android augmented reality application built with Unity and Vuforia to support
-                  PTPN's
-                  Complete Feed training program. By scanning images in a printed guidebook, users can view interactive
-                  3D
-                  models and animations that explain each stage of the production process.</p>
-                <div class="project-card-tech">
-                  <span>Unity</span>
-                  <span>AR</span>
-                  <span>Education</span>
-                </div>
-              </div>
-            </a>
-
-            <a href="./projects/chemlab.html" class="project-card page-link" data-category="vr">
-              <div class="project-card-image">
-                <img src="./image/projects/chemlab/ChemLabThumbnail.png" alt="ChemLab VR Preview" loading="lazy">
-                <div class="project-card-overlay">
-                  <span>View Project →</span>
-                </div>
-              </div>
-              <div class="project-card-body">
-                <h3>ChemLab</h3>
-                <p>ChemLab is a Unity-based VR application that allows high school students to perform chemistry
-                  experiments in a virtual laboratory. The application provides an interactive environment where
-                  students can learn laboratory procedures and observe chemical reactions safely.</p>
-                <div class="project-card-tech">
-                  <span>Unity</span>
-                  <span>VR</span>
-                  <span>Education</span>
-                </div>
-              </div>
-            </a>
-
-            <a href="./projects/ecoalert.html" class="project-card page-link" data-category="mobile">
-              <div class="project-card-image">
-                <img src="./image/projects/ecoalert/EcoAlertThumbnail.png" alt="EcoAlert Preview" loading="lazy">
-                <div class="project-card-overlay">
-                  <span>View Project →</span>
-                </div>
-              </div>
-              <div class="project-card-body">
-                <h3>EcoAlert</h3>
-                <p>EcoAlert is a native Android application that allows users to report disasters and
-                  public emergencies. Users can submit incident reports with photos and location information to help
-                  authorities respond more efficiently.</p>
-                <div class="project-card-tech">
-                  <span>Android</span>
-                  <span>Kotlin</span>
-                  <span>Social</span>
-                </div>
-              </div>
-            </a>
-
-          </div>
+          <!-- Project cards are rendered dynamically by js/projects.js from data/projects.json -->
+          <div class="project-carousel-track" id="projectTrack"></div>
         </div>
 
         <button class="carousel-nav-btn next-btn" id="carouselNext" aria-label="Next project">
@@ -312,21 +228,30 @@
         below.</p>
 
       <div class="contact-grid reveal">
-        <form class="contact-form" action="https://formspree.io/f/your-form-id" method="POST">
+        <div data-fs-success class="form-success-msg" style="display:none;">
+          <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#2e7d32" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+          Thanks for reaching out! I'll get back to you soon.
+        </div>
+        <div data-fs-error class="form-error-msg" style="display:none;"></div>
+
+        <form class="contact-form" id="contactForm" action="https://formspree.io/f/mgawewkk" method="POST">
           <div class="form-group">
             <label for="contactName">Name</label>
-            <input type="text" id="contactName" name="name" placeholder="Your name" required>
+            <input type="text" id="contactName" name="name" placeholder="Your name" required data-fs-field>
+            <span data-fs-error="name" class="form-field-error"></span>
           </div>
           <div class="form-group">
             <label for="contactEmail">Email</label>
-            <input type="email" id="contactEmail" name="email" placeholder="your@email.com" required>
+            <input type="email" id="contactEmail" name="email" placeholder="your@email.com" required data-fs-field>
+            <span data-fs-error="email" class="form-field-error"></span>
           </div>
           <div class="form-group">
             <label for="contactMessage">Message</label>
             <textarea id="contactMessage" name="message" placeholder="Tell me about your project..."
-              required></textarea>
+              required data-fs-field></textarea>
+            <span data-fs-error="message" class="form-field-error"></span>
           </div>
-          <button type="submit" class="form-submit">
+          <button type="submit" class="form-submit" data-fs-submit-btn>
             Send Message
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
               stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -444,6 +369,16 @@
       </div>
     </div>
   </div>
+
+  <!-- Formspree AJAX library -->
+  <script>
+    window.formspree = window.formspree || function () { (formspree.q = formspree.q || []).push(arguments); };
+    formspree('initForm', { formElement: '#contactForm', formId: 'mgawewkk' });
+  </script>
+  <script src="https://unpkg.com/@formspree/ajax@1" defer></script>
+
+  <!-- Load project cards from JSON (dispatches 'projectsReady' when done) -->
+  <script type="module" src="./js/projects.js"></script>
 
   <script src="./script.js"></script>
 

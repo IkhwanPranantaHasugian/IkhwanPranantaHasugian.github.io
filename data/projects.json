@@ -1,0 +1,140 @@
+﻿[
+  {
+    "id": "garagesim",
+    "title": "GarageSim",
+    "category": "vr",
+    "year": "2025",
+    "role": "Solo Developer",
+    "platform": "PCVR",
+    "featured": true,
+    "galleryMode": "landscape",
+    "thumbnail": "image/projects/garagesim/GarageSimThumbnail.png",
+    "thumbnailAlt": "GarageSim VR Preview",
+    "gallery": [
+      { "type": "image", "src": "image/projects/garagesim/GarageSimThumbnail.png", "alt": "GarageSim VR main preview" },
+      { "type": "video", "src": "image/projects/garagesim/VideoPreviewGarageSim.mp4", "alt": "Play Video Preview" },
+      { "type": "image", "src": "image/projects/garagesim/Lobby.png", "alt": "GarageSim Preview 1" },
+      { "type": "image", "src": "image/projects/garagesim/Scene.png", "alt": "GarageSim Preview 2" }
+    ],
+    "technologies": ["Unity", "VR", "C#", "Education"],
+    "techStack": ["Unity", "Blender"],
+    "shortDescription": "A VR training application built with Unity to help automotive vocational students practice basic vehicle maintenance in a virtual environment.",
+    "tagline": "A VR training application built with Unity to help automotive vocational students practice basic vehicle maintenance in a virtual environment.",
+    "overview": [
+      "GarageSim is a VR application I developed for my final-year project. The goal was to give automotive vocational students a way to practice vehicle maintenance without relying on physical equipment.",
+      "Using a VR headset, students can interact with engine components and tools in a virtual workshop while following the maintenance steps. The application is intended to provide additional practice before working with real vehicles."
+    ],
+    "features": ["Interactive engine components", "Guided maintenance procedures", "Progress tracking"],
+    "challenge": [
+      "The most challenging part of this project was implementing VR interactions that felt consistent and easy to use. I spent a lot of time adjusting object interactions, grabbing mechanics, and tool behavior to make the experience feel more natural.",
+      "This project was my first experience building a complete VR application with Unity. Along the way, I learned how to use the XR Interaction Toolkit, optimize scenes for VR devices, and design interactions that are simple enough for first-time users."
+    ],
+    "github": "https://github.com/IkhwanPranantaHasugian/GarageSim",
+    "demo": "",
+    "video": ""
+  },
+  {
+    "id": "completefeedar",
+    "title": "CompleteFeedAR",
+    "category": "ar",
+    "year": "2026",
+    "role": "Solo Developer",
+    "platform": "Android",
+    "featured": true,
+    "galleryMode": "landscape",
+    "thumbnail": "image/projects/completefeedar/CompleteFeedARThumbnail.png",
+    "thumbnailAlt": "CompleteFeedAR Preview",
+    "gallery": [
+      { "type": "image", "src": "image/projects/completefeedar/CompleteFeedARThumbnail.png", "alt": "CompleteFeedAR main preview" },
+      { "type": "video", "src": "image/projects/completefeedar/VideoPreviewCompleteFeedAR.mp4", "alt": "Play Video Preview" },
+      { "type": "image", "src": "image/projects/completefeedar/Configure1.png", "alt": "CompleteFeedAR preview 2" },
+      { "type": "image", "src": "image/projects/completefeedar/Configure2.png", "alt": "CompleteFeedAR preview 3" }
+    ],
+    "technologies": ["Unity", "AR", "Education"],
+    "techStack": ["Unity", "Vuforia", "Blender"],
+    "shortDescription": "CompleteFeedAR is an Android augmented reality application built with Unity and Vuforia to support PTPN's Complete Feed training program.",
+    "tagline": "CompleteFeedAR is an Android augmented reality application built with Unity and Vuforia to support PTPN's Complete Feed training program. By scanning images in a printed guidebook, users can view interactive 3D models and animations that explain each stage of the production process.",
+    "overview": [
+      "CompleteFeedAR was developed as part of a collaboration with PTPN to support training for the Complete Feed production process.",
+      "The application uses image-based augmented reality, allowing users to scan pages in a printed guidebook and view related 3D content on their Android devices. Each section includes models and animations that help explain the equipment, materials, and production steps in a more visual and interactive way."
+    ],
+    "features": ["Interactive 3D models and animations", "Step-by-step animated production process visualization", "Android mobile application"],
+    "challenge": [
+      "The main challenge in this project was achieving stable image tracking under different lighting conditions. This required selecting suitable marker images and optimizing them to improve detection reliability. I also optimized the 3D assets to maintain smooth performance on Android devices.",
+      "This project gave me hands-on experience with Unity and Vuforia for mobile augmented reality development. I also learned how user feedback can influence design decisions, especially when developing applications for users with different levels of technical experience."
+    ],
+    "github": "https://github.com/IkhwanPranantaHasugian/CompleteFeedAR",
+    "demo": "",
+    "video": ""
+  },
+  {
+    "id": "chemlab",
+    "title": "ChemLab",
+    "category": "vr",
+    "year": "2026",
+    "role": "Solo Developer",
+    "platform": "PCVR",
+    "featured": true,
+    "galleryMode": "landscape",
+    "thumbnail": "image/projects/chemlab/ChemLabThumbnail.png",
+    "thumbnailAlt": "ChemLab VR Preview",
+    "gallery": [
+      { "type": "image", "src": "image/projects/chemlab/ChemLabThumbnail.png", "alt": "ChemLab VR main preview" },
+      { "type": "video", "src": "image/projects/chemlab/VideoPreviewChemLab.mp4", "alt": "Play Video Preview" },
+      { "type": "image", "src": "image/projects/chemlab/Configure1.png", "alt": "ChemLab preview 1" },
+      { "type": "image", "src": "image/projects/chemlab/Configure2.png", "alt": "ChemLab preview 2" }
+    ],
+    "technologies": ["Unity", "VR", "Education"],
+    "techStack": ["Unity", "Blender"],
+    "shortDescription": "ChemLab is a Unity-based VR application that allows high school students to perform chemistry experiments in a virtual laboratory.",
+    "tagline": "ChemLab is a Unity-based VR application that allows high school students to perform chemistry experiments in a virtual laboratory. The application provides an interactive environment where students can learn laboratory procedures and observe chemical reactions safely.",
+    "overview": [
+      "ChemLab was developed to provide a virtual chemistry laboratory for high school students. The application allows users to perform experiments using virtual laboratory equipment while following standard experimental procedures.",
+      "Students can interact with lab tools such as beakers, test tubes, Bunsen burners, and chemical solutions in an immersive VR environment. The goal is to help students better understand laboratory activities and chemistry concepts through hands-on interaction."
+    ],
+    "features": ["Interactive laboratory equipment", "Guided experiment", "Laboratory safety instructions"],
+    "challenge": [
+      "The biggest challenge in this project was creating interactive laboratory equipment and presenting chemical reactions in a way that was both understandable and visually engaging. I also optimized the application to maintain stable performance while handling multiple interactive objects in VR.",
+      "Through this project, I gained more experience developing VR applications with Unity and designing interactive learning experiences. I also improved my understanding of building user interactions, organizing project architecture, and optimizing performance for standalone VR devices."
+    ],
+    "github": "https://github.com/IkhwanPranantaHasugian/ChemLab",
+    "demo": "",
+    "video": ""
+  },
+  {
+    "id": "ecoalert",
+    "title": "EcoAlert",
+    "category": "mobile",
+    "year": "2024",
+    "role": "Solo Developer",
+    "platform": "Android",
+    "featured": true,
+    "galleryMode": "portrait",
+    "thumbnail": "image/projects/ecoalert/EcoAlertThumbnail.png",
+    "thumbnailAlt": "EcoAlert Preview",
+    "gallery": [
+      { "type": "image", "src": "image/projects/ecoalert/Page1.png", "alt": "EcoAlert Android App preview screen 1" },
+      { "type": "image", "src": "image/projects/ecoalert/Page2.png", "alt": "EcoAlert screen 2" },
+      { "type": "image", "src": "image/projects/ecoalert/Page3.png", "alt": "EcoAlert screen 3" },
+      { "type": "image", "src": "image/projects/ecoalert/Page4.png", "alt": "EcoAlert screen 4" },
+      { "type": "image", "src": "image/projects/ecoalert/Page5.png", "alt": "EcoAlert screen 5" },
+      { "type": "image", "src": "image/projects/ecoalert/Page6.png", "alt": "EcoAlert screen 6" }
+    ],
+    "technologies": ["Android", "Kotlin", "Social"],
+    "techStack": ["Android Studio", "Kotlin", "Google Maps API"],
+    "shortDescription": "EcoAlert is a native Android application that allows users to report disasters and public emergencies. Users can submit incident reports with photos and location information to help authorities respond more efficiently.",
+    "tagline": "EcoAlert is a native Android application that allows users to report disasters and public emergencies. Users can submit incident reports with photos and location information to help authorities respond more efficiently.",
+    "overview": [
+      "EcoAlert is an Android application developed to make it easier for users to report disasters and public safety incidents. The application allows users to submit reports such as fires, floods, fallen trees, and infrastructure damage, along with photos and GPS location data.",
+      "The application also displays reported incidents on a map, making it easier to view nearby reports and monitor ongoing situations."
+    ],
+    "features": ["Incident reporting with GPS location", "Photo attachment for reports", "Interactive map with report markers", "Status tracking for submitted reports"],
+    "challenge": [
+      "One of the main challenges in this project was handling location services and runtime permissions while providing a smooth user experience. I also worked on integrating maps and organizing the application using the MVVM architecture to keep the code easier to maintain.",
+      "This project helped me improve my Android development skills using Kotlin. I gained experience working with GPS, maps, application architecture, and building mobile applications that handle user-generated data."
+    ],
+    "github": "https://github.com/IkhwanPranantaHasugian/EcoAlert",
+    "demo": "",
+    "video": ""
+  }
+]
