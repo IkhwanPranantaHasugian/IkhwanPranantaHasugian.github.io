@@ -398,19 +398,97 @@ if (footerYear) {
 }
 
 // ── Contact Form Handling (Formspree AJAX) ──
-// The form is handled by @formspree/ajax CDN library via data-* attributes.
-// We only add a submit visual feedback layer here.
-const contactForm = document.querySelector('.contact-form');
+const contactForm = document.getElementById('contactForm') || document.querySelector('.contact-form');
 if (contactForm) {
-  contactForm.addEventListener('submit', function () {
+  contactForm.addEventListener('submit', async function (e) {
+    e.preventDefault();
+
     const submitBtn = this.querySelector('.form-submit');
+    const successMsg = document.querySelector('[data-fs-success]') || document.querySelector('.form-success-msg');
+    const errorMsg = document.querySelector('[data-fs-error]') || document.querySelector('.form-error-msg');
+
+    // Reset previous messages
+    if (successMsg) {
+      successMsg.classList.remove('show');
+      successMsg.style.display = 'none';
+    }
+    if (errorMsg) {
+      errorMsg.classList.remove('show');
+      errorMsg.style.display = 'none';
+      errorMsg.textContent = '';
+    }
+
+    const originalBtnHTML = submitBtn ? submitBtn.innerHTML : '';
     if (submitBtn) {
+      submitBtn.disabled = true;
       submitBtn.innerHTML = `
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="animation:spin 1s linear infinite">
           <path d="M21 12a9 9 0 1 1-6.219-8.56"/>
         </svg>
         Sending…
       `;
+    }
+
+    try {
+      const data = new FormData(this);
+      const action = this.getAttribute('action');
+
+      const response = await fetch(action, {
+        method: 'POST',
+        body: data,
+        headers: {
+          'Accept': 'application/json'
+        }
+      });
+
+      if (response.ok) {
+        this.reset();
+        if (successMsg) {
+          successMsg.style.display = 'flex';
+          successMsg.classList.add('show');
+        }
+        if (submitBtn) {
+          submitBtn.innerHTML = `
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="20 6 9 17 4 12"/>
+            </svg>
+            Message Sent!
+          `;
+          setTimeout(() => {
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = originalBtnHTML;
+          }, 4000);
+        }
+      } else {
+        const resData = await response.json().catch(() => ({}));
+        let errorText = 'Oops! There was a problem submitting your form.';
+
+        if (response.status === 404) {
+          errorText = 'Formspree Endpoint Not Found (404). Please confirm your form on Formspree dashboard, or reach out directly via ikhwanprananta01@email.com.';
+        } else if (resData.errors && resData.errors.length) {
+          errorText = resData.errors.map(err => err.message).join(', ');
+        }
+
+        if (errorMsg) {
+          errorMsg.textContent = errorText;
+          errorMsg.style.display = 'flex';
+          errorMsg.classList.add('show');
+        }
+        if (submitBtn) {
+          submitBtn.disabled = false;
+          submitBtn.innerHTML = originalBtnHTML;
+        }
+      }
+    } catch (err) {
+      if (errorMsg) {
+        errorMsg.textContent = 'Network error. Please check your internet connection or email me directly at ikhwanprananta01@email.com.';
+        errorMsg.style.display = 'flex';
+        errorMsg.classList.add('show');
+      }
+      if (submitBtn) {
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = originalBtnHTML;
+      }
     }
   });
 }
